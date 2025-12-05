@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Rocket, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
@@ -13,7 +13,7 @@ import { authClient, useSession } from "../../lib/auth-client";
 import { toast } from "sonner";
 import { useEffect } from "react";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { data: session, isPending } = useSession();
@@ -118,14 +118,14 @@ export default function LoginPage() {
 
   if (isPending) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-teal-50 via-white to-blue-50">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-teal-50 via-white to-blue-50">
         <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-teal-50 via-white to-blue-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-teal-50 via-white to-blue-50 px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-teal-100">
@@ -265,5 +265,17 @@ export default function LoginPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-teal-50 via-white to-blue-50">
+        <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
