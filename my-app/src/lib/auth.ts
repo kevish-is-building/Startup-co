@@ -9,7 +9,7 @@ export const auth = betterAuth({
 	database: prismaAdapter(prisma, {
 		provider: "postgresql",
 	}),
-	emailAndPassword: {    
+	emailAndPassword: {
 		enabled: true
 	},
 	socialProviders: {
@@ -27,3 +27,4 @@ export async function getCurrentUser(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
   return session?.user || null;
 }
+export const runtime = "nodejs"; 
