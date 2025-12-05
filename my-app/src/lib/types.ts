@@ -30,6 +30,7 @@ export interface Template {
   category: string;
   fileType: string;
   content: string;
+  industry?: string;
 }
 
 export interface PlaybookArticle {

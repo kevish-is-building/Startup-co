@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
         }, { status: 400 });
       }
 
-      const invalidSkills = member.skills.filter(skill => !VALID_SKILLS.includes(skill));
+      const invalidSkills: string[] = member.skills.filter((skill: string) => !VALID_SKILLS.includes(skill));
       if (invalidSkills.length > 0) {
         return NextResponse.json({
           error: `Founding team member at index ${i} has invalid skills. Valid skills: ${VALID_SKILLS.join(', ')}`,
@@ -162,14 +162,41 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    const result = {
-      ...newStartup,
-      goals: JSON.parse(newStartup.goals),
-      foundingTeam: newStartup.foundingTeam.map(member => ({
-        ...member,
-        skills: JSON.parse(member.skills),
-      })),
-    };
+    interface FoundingTeamMember {
+      id: string;
+      name: string;
+      skills: string[];
+      startupId: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }
+
+    interface StartupResult {
+      id: string;
+      userId: string;
+      fullName: string;
+      startupName: string;
+      industry: string;
+      stage: string;
+      founderCount: number;
+      domainPurchased: boolean;
+      trademarkCompleted: boolean;
+      entityRegistered: boolean;
+      goals: string[];
+      onboardingCompleted: boolean;
+      createdAt: Date;
+      updatedAt: Date;
+      foundingTeam: FoundingTeamMember[];
+    }
+
+        const result: any = {
+          ...newStartup,
+          goals: JSON.parse(newStartup.goals),
+          foundingTeam: newStartup.foundingTeam.map((member: any) => ({
+            ...member,
+            skills: JSON.parse(member.skills),
+          })),
+        };
 
     return NextResponse.json(result, { status: 201 });
 
@@ -215,12 +242,66 @@ export async function GET(request: NextRequest) {
       skip: offset
     });
 
-    const startupsWithTeams = results.map(startup => ({
+    interface FoundingTeamMemberResponse {
+      id: string;
+      name: string;
+      skills: string[];
+      startupId: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }
+
+    interface StartupResponse {
+      id: string;
+      userId: string;
+      fullName: string;
+      startupName: string;
+      industry: string;
+      stage: string;
+      founderCount: number;
+      domainPurchased: boolean;
+      trademarkCompleted: boolean;
+      entityRegistered: boolean;
+      goals: string[];
+      onboardingCompleted: boolean;
+      createdAt: Date;
+      updatedAt: Date;
+      foundingTeam: FoundingTeamMemberResponse[];
+    }
+
+    interface RawFoundingTeamMember {
+      id: string;
+      name: string;
+      skills: string;
+      startupId: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }
+
+    interface RawStartup {
+      id: string;
+      userId: string;
+      fullName: string;
+      startupName: string;
+      industry: string;
+      stage: string;
+      founderCount: number;
+      domainPurchased: boolean;
+      trademarkCompleted: boolean;
+      entityRegistered: boolean;
+      goals: string;
+      onboardingCompleted: boolean;
+      createdAt: Date;
+      updatedAt: Date;
+      foundingTeam: RawFoundingTeamMember[];
+    }
+
+    const startupsWithTeams: StartupResponse[] = results.map((startup: any) => ({
       ...startup,
       goals: JSON.parse(startup.goals),
-      foundingTeam: startup.foundingTeam.map(member => ({
-        ...member,
-        skills: JSON.parse(member.skills),
+      foundingTeam: startup.foundingTeam.map((member: RawFoundingTeamMember) => ({
+      ...member,
+      skills: JSON.parse(member.skills),
       })),
     }));
 

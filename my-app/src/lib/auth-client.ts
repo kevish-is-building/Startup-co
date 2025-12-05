@@ -22,7 +22,7 @@ export const authClient = createAuthClient({
 
 type SessionData = ReturnType<typeof authClient.useSession>
 
-export function useSession(): SessionData {
+export function useSession(): any {
    const [session, setSession] = useState<any>(null);
    const [isPending, setIsPending] = useState(true);
    const [error, setError] = useState<any>(null);
