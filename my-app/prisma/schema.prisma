@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Auth tables for better-auth
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  sessions      Session[]
+  accounts      Account[]
+  startups      Startup[]
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                      String    @id
+  accountId               String
+  providerId              String
+  userId                  String
+  accessToken             String?
+  refreshToken            String?
+  idToken                 String?
+  accessTokenExpiresAt    DateTime?
+  refreshTokenExpiresAt   DateTime?
+  scope                   String?
+  password                String?
+  createdAt               DateTime
+  updatedAt               DateTime
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Startup onboarding tables
+model Startup {
+  id                   Int       @id @default(autoincrement())
+  userId               String
+  fullName             String
+  startupName          String
+  industry             String
+  stage                String
+  founderCount         Int
+  domainPurchased      Boolean   @default(false)
+  trademarkCompleted   Boolean   @default(false)
+  entityRegistered     Boolean   @default(false)
+  goals                String    // JSON string
+  onboardingCompleted  Boolean   @default(false)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  foundingTeam  FoundingTeam[]
+  blueprints    Blueprint[]
+}
+
+model FoundingTeam {
+  id        Int      @id @default(autoincrement())
+  startupId Int
+  name      String
+  skills    String   // JSON string
+  createdAt DateTime @default(now())
+  
+  startup Startup @relation(fields: [startupId], references: [id], onDelete: Cascade)
+}
+
+model Blueprint {
+  id          Int      @id @default(autoincrement())
+  startupId   Int      @unique
+  content     String   // JSON string
+  generatedAt DateTime
+  createdAt   DateTime @default(now())
+  
+  startup Startup @relation(fields: [startupId], references: [id], onDelete: Cascade)
+}

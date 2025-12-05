@@ -1,0 +1,328 @@
+{
+  "sampleProfile": {
+    "id": "sample-1",
+    "companyName": "TechFlow AI",
+    "industry": "SaaS",
+    "stage": "idea",
+    "founderCount": 2,
+    "fundingGoal": "seed",
+    "currentState": "concept",
+    "goals": ["build_mvp", "raise_funding", "get_first_customers"],
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  "tasks": [
+    {
+      "id": "task-1",
+      "week": 1,
+      "title": "Define your core value proposition",
+      "description": "Clearly articulate what problem you're solving and for whom. Write a one-sentence pitch that captures your unique value.",
+      "category": "product",
+      "priority": "high",
+      "estimatedHours": 8,
+      "resources": ["playbook-1"]
+    },
+    {
+      "id": "task-2",
+      "week": 1,
+      "title": "Research competitors and market landscape",
+      "description": "Identify 5-10 competitors or similar solutions. Analyze their strengths, weaknesses, and market positioning.",
+      "category": "marketing",
+      "priority": "high",
+      "estimatedHours": 12,
+      "resources": ["playbook-2"]
+    },
+    {
+      "id": "task-3",
+      "week": 2,
+      "title": "Create initial user personas",
+      "description": "Develop 2-3 detailed user personas representing your target customers. Include demographics, pain points, and goals.",
+      "category": "product",
+      "priority": "high",
+      "estimatedHours": 6,
+      "dependencies": ["task-1"]
+    },
+    {
+      "id": "task-4",
+      "week": 2,
+      "title": "Choose business entity structure",
+      "description": "Decide between LLC, C-Corp, or S-Corp based on your funding goals and tax situation. Consult with a lawyer if needed.",
+      "category": "legal",
+      "priority": "high",
+      "estimatedHours": 4,
+      "resources": ["template-1", "playbook-3"]
+    },
+    {
+      "id": "task-5",
+      "week": 3,
+      "title": "Register your business entity",
+      "description": "File formation documents with your state. Obtain EIN from IRS. Set up business bank account.",
+      "category": "legal",
+      "priority": "high",
+      "estimatedHours": 8,
+      "dependencies": ["task-4"],
+      "resources": ["template-1"]
+    },
+    {
+      "id": "task-6",
+      "week": 3,
+      "title": "Draft founders' agreement",
+      "description": "Define equity split, vesting schedules, roles, and decision-making processes among co-founders.",
+      "category": "legal",
+      "priority": "high",
+      "estimatedHours": 10,
+      "resources": ["template-2", "playbook-4"]
+    },
+    {
+      "id": "task-7",
+      "week": 4,
+      "title": "Create wireframes for MVP",
+      "description": "Design low-fidelity wireframes for core user flows. Focus on essential features only.",
+      "category": "product",
+      "priority": "high",
+      "estimatedHours": 16,
+      "dependencies": ["task-3"]
+    },
+    {
+      "id": "task-8",
+      "week": 5,
+      "title": "Set up tech stack and development environment",
+      "description": "Choose your technology stack. Set up version control, CI/CD pipelines, and development tools.",
+      "category": "operations",
+      "priority": "high",
+      "estimatedHours": 12
+    },
+    {
+      "id": "task-9",
+      "week": 6,
+      "title": "Build MVP core features",
+      "description": "Develop the minimum viable version focusing on your core value proposition. Aim for functional, not perfect.",
+      "category": "product",
+      "priority": "high",
+      "estimatedHours": 80,
+      "dependencies": ["task-7", "task-8"]
+    },
+    {
+      "id": "task-10",
+      "week": 8,
+      "title": "Create landing page and wait list",
+      "description": "Build a simple landing page explaining your product. Add email capture for early access list.",
+      "category": "marketing",
+      "priority": "high",
+      "estimatedHours": 16
+    },
+    {
+      "id": "task-11",
+      "week": 9,
+      "title": "Conduct user testing with 10+ people",
+      "description": "Get your MVP in front of real users. Observe their behavior, collect feedback, and identify pain points.",
+      "category": "product",
+      "priority": "high",
+      "estimatedHours": 20,
+      "dependencies": ["task-9"]
+    },
+    {
+      "id": "task-12",
+      "week": 10,
+      "title": "Implement SAFE or convertible note template",
+      "description": "Prepare standard fundraising documents. Understand the terms and implications for future rounds.",
+      "category": "fundraising",
+      "priority": "medium",
+      "estimatedHours": 8,
+      "resources": ["template-3", "playbook-5"]
+    },
+    {
+      "id": "task-13",
+      "week": 10,
+      "title": "Create pitch deck",
+      "description": "Build a 10-15 slide deck covering problem, solution, market, traction, team, and ask.",
+      "category": "fundraising",
+      "priority": "high",
+      "estimatedHours": 24,
+      "resources": ["playbook-6"]
+    },
+    {
+      "id": "task-14",
+      "week": 11,
+      "title": "Iterate on MVP based on feedback",
+      "description": "Make key improvements based on user testing insights. Focus on the biggest pain points.",
+      "category": "product",
+      "priority": "high",
+      "estimatedHours": 40,
+      "dependencies": ["task-11"]
+    },
+    {
+      "id": "task-15",
+      "week": 12,
+      "title": "Launch beta to early users",
+      "description": "Release your refined MVP to your waitlist. Set up analytics to track key metrics.",
+      "category": "marketing",
+      "priority": "high",
+      "estimatedHours": 16,
+      "dependencies": ["task-14"]
+    }
+  ],
+  "templates": [
+    {
+      "id": "template-1",
+      "title": "Certificate of Incorporation",
+      "description": "Standard Delaware C-Corp formation document template",
+      "category": "legal",
+      "fileType": "docx",
+      "content": "CERTIFICATE OF INCORPORATION\nOF\n[COMPANY NAME], INC.\n\nThe undersigned, in order to form a corporation for the purposes hereinafter stated, under and pursuant to the provisions of the General Corporation Law of the State of Delaware, does hereby certify:\n\nFIRST: The name of the corporation is [COMPANY NAME], Inc.\n\nSECOND: The address of the registered office of the corporation in the State of Delaware is [ADDRESS], and the name of its registered agent at such address is [AGENT NAME].\n\nTHIRD: The purpose of the corporation is to engage in any lawful act or activity for which corporations may be organized under the General Corporation Law of Delaware.\n\nFOURTH: The total number of shares of stock which the corporation shall have authority to issue is [NUMBER] shares of Common Stock, each with a par value of $0.0001 per share.\n\nFIFTH: The name and mailing address of the incorporator is:\n[INCORPORATOR NAME]\n[INCORPORATOR ADDRESS]\n\nSIXTH: The corporation is to have perpetual existence.\n\nIN WITNESS WHEREOF, the undersigned has executed this Certificate of Incorporation this [DAY] day of [MONTH], [YEAR].\n\n_______________________\n[INCORPORATOR NAME]\nIncorporator"
+    },
+    {
+      "id": "template-2",
+      "title": "Founders' Agreement",
+      "description": "Comprehensive founders agreement with equity split and vesting",
+      "category": "legal",
+      "fileType": "docx",
+      "content": "FOUNDERS' AGREEMENT\n\nThis Founders' Agreement (\"Agreement\") is entered into as of [DATE] by and between the undersigned founders (\"Founders\") of [COMPANY NAME], Inc. (the \"Company\").\n\n1. EQUITY ALLOCATION\nThe Founders agree to the following initial equity split:\n- [FOUNDER 1 NAME]: [PERCENTAGE]%\n- [FOUNDER 2 NAME]: [PERCENTAGE]%\n\n2. VESTING SCHEDULE\nAll founder shares shall vest over a four (4) year period with a one (1) year cliff. If a Founder's relationship with the Company terminates before the cliff date, all unvested shares shall be forfeited.\n\n3. ROLES AND RESPONSIBILITIES\n[FOUNDER 1 NAME] shall serve as [TITLE] and be responsible for [RESPONSIBILITIES]\n[FOUNDER 2 NAME] shall serve as [TITLE] and be responsible for [RESPONSIBILITIES]\n\n4. DECISION MAKING\nMajor decisions requiring unanimous consent include:\n- Raising investment or taking on debt\n- Selling the company or substantial assets\n- Hiring/firing C-level executives\n- Changing the company's core business model\n\n5. INTELLECTUAL PROPERTY\nAll Founders assign all intellectual property created in connection with the Company to the Company.\n\n6. NON-COMPETE\nDuring their involvement with the Company and for [TIME PERIOD] thereafter, Founders agree not to compete directly with the Company.\n\n7. DISPUTE RESOLUTION\nAny disputes shall be resolved through mediation, and if necessary, binding arbitration.\n\nIN WITNESS WHEREOF, the Founders have executed this Agreement as of the date first written above.\n\n_______________________  _______________________\n[FOUNDER 1 NAME]        [FOUNDER 2 NAME]"
+    },
+    {
+      "id": "template-3",
+      "title": "SAFE Agreement (Simple Agreement for Future Equity)",
+      "description": "Standard Y Combinator SAFE template for early-stage fundraising",
+      "category": "legal",
+      "fileType": "docx",
+      "content": "SAFE (Simple Agreement for Future Equity)\n\nTHIS CERTIFIES THAT in exchange for the payment by [INVESTOR NAME] (the \"Investor\") of $[AMOUNT] (the \"Purchase Amount\") on or about [DATE], [COMPANY NAME], Inc., a Delaware corporation (the \"Company\"), issues to the Investor the right to certain shares of the Company's Capital Stock, subject to the terms described below.\n\nThis Safe is one of the forms available at http://ycombinator.com/documents and the Company and the Investor agree that neither one has modified the form, except to fill in blanks and bracketed terms.\n\n1. Events\n\n(a) Equity Financing. If there is an Equity Financing before the termination of this Safe, on the initial closing of such Equity Financing, this Safe will automatically convert into the number of shares of Safe Preferred Stock equal to the Purchase Amount divided by the Conversion Price.\n\nThe \"Conversion Price\" is either:\n(1) the Safe Price (if this Safe has a Valuation Cap); or\n(2) the Discount Price (if this Safe has a Discount Rate); whichever calculation results in a greater number of shares of Safe Preferred Stock.\n\nValuation Cap: $[AMOUNT]\nDiscount Rate: [PERCENTAGE]%\n\n(b) Liquidity Event. If there is a Liquidity Event before the termination of this Safe, this Safe will automatically be entitled to receive a portion of Proceeds equal to the Purchase Amount.\n\n(c) Dissolution Event. If there is a Dissolution Event before this Safe terminates, the Investor will automatically be entitled to receive a portion of Proceeds equal to the Purchase Amount.\n\n2. Company Representations\n\n(a) The Company is a corporation duly organized, validly existing and in good standing under the laws of the State of Delaware.\n\n(b) The execution, delivery and performance by the Company of this Safe is within the power of the Company and has been duly authorized.\n\nIN WITNESS WHEREOF, the undersigned have caused this Safe to be duly executed and delivered.\n\n[COMPANY NAME], INC.\n\nBy: _______________________\nName: [FOUNDER NAME]\nTitle: CEO\n\nINVESTOR:\n\n_______________________\n[INVESTOR NAME]"
+    },
+    {
+      "id": "template-4",
+      "title": "Employee Offer Letter",
+      "description": "Standard employment offer letter template",
+      "category": "legal",
+      "fileType": "docx",
+      "content": "EMPLOYMENT OFFER LETTER\n\n[DATE]\n\nDear [CANDIDATE NAME],\n\nWe are pleased to offer you the position of [TITLE] at [COMPANY NAME], Inc. (the \"Company\"). We believe your skills and experience will be a valuable addition to our team.\n\nPosition: [TITLE]\nStart Date: [DATE]\nSalary: $[AMOUNT] per year, paid [FREQUENCY]\nEquity: [NUMBER] stock options, subject to vesting schedule\nBenefits: [BENEFITS DESCRIPTION]\n\nReporting: You will report directly to [MANAGER NAME], [MANAGER TITLE].\n\nThis offer is contingent upon:\n- Successful completion of a background check\n- Proof of your eligibility to work in the United States\n- Signing the Company's standard Confidential Information and Invention Assignment Agreement\n\nYour employment with the Company will be \"at-will,\" meaning that either you or the Company may terminate the employment relationship at any time, with or without cause or notice.\n\nTo accept this offer, please sign and return this letter by [DATE].\n\nWe look forward to welcoming you to the team!\n\nSincerely,\n\n_______________________\n[FOUNDER NAME]\n[TITLE]\n\nACCEPTANCE:\n\nI accept the above offer of employment and confirm my start date of [DATE].\n\n_______________________  _______________________\n[CANDIDATE NAME]         Date"
+    },
+    {
+      "id": "template-5",
+      "title": "NDA (Non-Disclosure Agreement)",
+      "description": "Mutual non-disclosure agreement for business discussions",
+      "category": "legal",
+      "fileType": "docx",
+      "content": "MUTUAL NON-DISCLOSURE AGREEMENT\n\nThis Mutual Non-Disclosure Agreement (\"Agreement\") is entered into as of [DATE] by and between [COMPANY NAME], Inc. (\"Company\") and [OTHER PARTY NAME] (\"Recipient\").\n\n1. DEFINITION OF CONFIDENTIAL INFORMATION\n\"Confidential Information\" means any information disclosed by one party to the other party, either directly or indirectly, in writing, orally or by inspection of tangible objects, including without limitation business plans, technical data, trade secrets, know-how, research, product plans, products, services, customers, customer lists, markets, software, developments, inventions, processes, formulas, technology, designs, drawings, engineering, hardware configuration information, marketing, finances or other business information.\n\n2. NON-USE AND NON-DISCLOSURE\nRecipient agrees:\n(a) Not to use Confidential Information for any purpose except to evaluate and engage in discussions concerning a potential business relationship between the parties.\n(b) Not to disclose Confidential Information to third parties without the prior written consent of the disclosing party.\n\n3. EXCEPTIONS\nConfidential Information shall not include information that:\n(a) Is or becomes publicly available without breach of this Agreement\n(b) Was rightfully in Recipient's possession prior to disclosure\n(c) Is independently developed by Recipient without use of Confidential Information\n(d) Is rightfully obtained by Recipient from a third party without breach\n\n4. TERM\nThis Agreement shall remain in effect for [TIME PERIOD] from the date of disclosure.\n\n5. RETURN OF MATERIALS\nUpon request, Recipient shall promptly return or destroy all Confidential Information received.\n\nIN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.\n\n[COMPANY NAME], INC.          [OTHER PARTY NAME]\n\nBy: _______________________   By: _______________________\nName:                         Name:\nTitle:                        Title:"
+    }
+  ],
+  "playbook": [
+    {
+      "id": "playbook-intro",
+      "title": "The Startup Playbook: From Zero to One",
+      "slug": "startup-playbook-intro",
+      "category": "Overview",
+      "readTime": 5,
+      "excerpt": "A Strategic Field Guide synthesized from Lean Startup methodology, venture capital best practices, and industry standards.",
+      "tags": ["overview", "strategy", "fundamentals"],
+      "content": "# The Startup Playbook\n## From Zero to One: A Strategic Field Guide\n\nSynthesized from Lean Startup methodology, venture capital best practices, and industry standards.\n\n## Founders' Knowledge Bank: Strategic Deep Dives\n\n50 essential startup concepts articulated for professional application.\n\nThis comprehensive playbook covers:\n\n### Section 1: Financial Fundamentals\nMaster the core financial metrics that drive startup success - from valuation mechanics to burn rate management.\n\n### Section 2: Key Performance Indicators (Metrics)\nUnderstand the metrics that matter - CAC, LTV, churn, and engagement ratios that investors scrutinize.\n\n### Section 3: Fundraising & Equity\nNavigate the fundraising landscape from angel investors to Series A, understanding term sheets, SAFEs, and cap tables.\n\n### Section 4: Legal & Governance\nProtect your startup with proper legal foundations - IP assignments, board management, and due diligence preparation.\n\n### Section 5: Strategic Concepts\nBuild sustainable competitive advantages through product-market fit, network effects, and strategic positioning.\n\n### The Narrative Playbook\nFollow the archetypal founder's journey through ideation, validation, MVP development, and launch.\n\n---\n\nExplore each section to build your foundational knowledge and execute with confidence."
+    },
+    {
+      "id": "playbook-financial",
+      "title": "Financial Fundamentals: The Numbers That Matter",
+      "slug": "financial-fundamentals",
+      "category": "Finance",
+      "readTime": 25,
+      "excerpt": "Master the 9 core financial concepts every founder must understand - from valuation to bootstrapping.",
+      "tags": ["finance", "valuation", "burn-rate", "metrics"],
+      "content": "# Financial Fundamentals\n\n## Concept #1: Valuation (Pre-money vs. Post-money)\n\n**Definition**: Valuation represents the agreed-upon worth of the company at a specific point in time. Pre-money valuation is the company's value immediately prior to a new investment. Post-money valuation is the Pre-money value plus the new capital injection.\n\n**Strategic Implication**: Investors calculate their equity stake based on the Post-money valuation. For instance, a $1M investment at a $4M Pre-money valuation results in a $5M Post-money valuation, granting the investor a 20% stake. Founders must be precise with these terms during negotiations to prevent unintentional over-dilution of ownership.\n\n---\n\n## Concept #2: Burn Rate (Gross vs. Net)\n\n**Definition**: The rate at which a company consumes its cash reserves. Gross Burn refers to total monthly operating expenses. Net Burn is the critical metric: Gross Burn minus monthly revenue, representing the actual cash deficit.\n\n**Strategic Implication**: If a company has $100,000 in cash and a Net Burn of $10,000/month, the operational horizon is limited. This metric dictates the urgency of fundraising or cost-cutting. Sustainable growth requires rigorous monitoring of Net Burn to ensure the company does not become insolvent before reaching its next milestone.\n\n---\n\n## Concept #3: Runway (Cash Horizon)\n\n**Definition**: The duration of time, typically expressed in months, that a startup can continue to operate before exhausting its cash reserves. Calculated as: Current Cash Balance / Net Monthly Burn Rate.\n\n**Strategic Implication**: A healthy runway target is 18-24 months following a funding round. This provides a buffer for operations and the lengthy process of future fundraising. If runway falls below 6 months, the company enters a critical risk zone, severely reducing leverage in negotiations with investors.\n\n---\n\n## Concept #4: Unit Economics (Per-Unit Profitability)\n\n**Definition**: The direct revenues and costs associated with a single unit of value (e.g., one subscription, one product sold). It answers whether the fundamental business transaction is profitable.\n\n**Strategic Implication**: Scaling a business with negative unit economics exacerbates losses. A common error is assuming economies of scale will automatically fix negative margins. Founders must demonstrate positive contribution margins on a per-unit basis to validate the business model before aggressively scaling operations.\n\n---\n\n## Concept #5: COGS (Cost of Goods Sold)\n\n**Definition**: The direct costs attributable to the production of the goods or services sold. For software, this includes server hosting and third-party APIs; for hardware, it includes materials and manufacturing labor. It excludes indirect costs like R&D, sales, and marketing.\n\n**Strategic Implication**: COGS is deducted from revenue to determine Gross Margin. Minimizing COGS is essential for scalability. If direct delivery costs are too high, the company will struggle to generate sufficient gross profit to fund growth and operating overhead.\n\n---\n\n## Concept #6: Gross Margin (Profitability Ratio)\n\n**Definition**: The percentage of revenue retained after incurring the direct costs of production (COGS). Formula: (Revenue - COGS) / Revenue.\n\n**Strategic Implication**: Software companies typically target high gross margins (70-80%+) due to low replication costs. Lower margin businesses (e.g., e-commerce, hardware) require higher volume to cover fixed costs. Investors closely scrutinize gross margin as a leading indicator of the company's long-term profitability potential.\n\n---\n\n## Concept #7: EBITDA (Operational Efficiency)\n\n**Definition**: Earnings Before Interest, Taxes, Depreciation, and Amortization. It is a measure of a company's overall operational performance, stripping away the effects of financing and accounting decisions.\n\n**Strategic Implication**: While early-stage startups focus on growth over profitability, EBITDA eventually becomes the standard metric for valuation in later stages (Series B+ and public markets). It demonstrates the inherent profitability of the core business operations.\n\n---\n\n## Concept #8: Cash Flow vs. Revenue (Liquidity vs. Sales)\n\n**Definition**: Revenue is income recognized when a sale is made (accrual accounting), often before payment is received. Cash Flow is the actual transfer of funds into the bank account.\n\n**Strategic Implication**: A company can be profitable on paper (high revenue) but insolvent (low cash) if customers pay on long terms (e.g., Net-90). Managing working capital—the timing gap between paying expenses and receiving payment—is vital to prevent liquidity crises.\n\n---\n\n## Concept #9: Bootstrapping (Self-Funding)\n\n**Definition**: Building and financing a company using personal resources and operating revenue, rather than external venture capital.\n\n**Strategic Implication**: Bootstrapping preserves 100% equity and control for the founders but limits the speed of growth due to capital constraints. It forces disciplined financial management early on but carries the risk of being outpaced by well-funded competitors in winner-take-all markets."
+    },
+    {
+      "id": "playbook-kpis",
+      "title": "Key Performance Indicators: Metrics That Drive Success",
+      "slug": "key-performance-indicators",
+      "category": "Metrics",
+      "readTime": 20,
+      "excerpt": "Master the 9 critical metrics that investors analyze and successful founders optimize daily.",
+      "tags": ["metrics", "kpis", "growth", "analytics"],
+      "content": "# Key Performance Indicators (Metrics)\n\n## Concept #10: CAC (Customer Acquisition Cost)\n\n**Definition**: The total cost associated with acquiring a new customer. Calculated by summing all sales and marketing expenses over a period and dividing by the number of new customers acquired in that same period.\n\n**Strategic Implication**: CAC must be viewed in relation to Lifetime Value (LTV). If acquisition costs exceed the value a customer brings, the business model is unsustainable. Optimization strategies focus on reducing CAC through organic channels, referral programs, and conversion rate optimization.\n\n---\n\n## Concept #11: LTV (Customer Lifetime Value)\n\n**Definition**: The projected revenue a customer will generate during their entire relationship with the company, minus the direct costs of servicing them.\n\n**Strategic Implication**: The \"Golden Ratio\" for sustainable growth is LTV:CAC > 3:1. This ensures that the return on investment for acquiring a customer justifies the spend. A ratio close to 1:1 indicates inefficient growth, while a ratio significantly higher suggests the company can afford to spend more aggressively on acquisition.\n\n---\n\n## Concept #12: Churn Rate (Attrition)\n\n**Definition**: The percentage of customers or revenue lost during a specific period. In SaaS, this is often the single most critical metric impacting long-term growth.\n\n**Strategic Implication**: High churn indicates a lack of product-market fit or customer success issues. Because acquiring new customers is more expensive than retaining existing ones, reducing churn is often the most effective lever for increasing revenue growth. \"Negative Churn\" (expansion revenue exceeding lost revenue) is the ideal state.\n\n---\n\n## Concept #13: MRR (Monthly Recurring Revenue)\n\n**Definition**: The normalized monthly revenue generated from subscription-based services. It provides a predictable baseline for financial planning.\n\n**Strategic Implication**: Investors value recurring revenue highly because of its predictability and compounding nature. It is crucial to separate MRR from one-time revenue sources (like consulting or setup fees) to accurately represent the health of the subscription business.\n\n---\n\n## Concept #14: ARPU (Average Revenue Per User)\n\n**Definition**: The average revenue generated per active user or account. Calculated as Total Revenue / Total Active Users.\n\n**Strategic Implication**: Growing ARPU indicates the ability to move up-market, cross-sell additional products, or successfully increase pricing power. It is a key driver of LTV. A low ARPU requires massive scale to be viable, while a high ARPU allows for a focus on a smaller, high-value customer base.\n\n---\n\n## Concept #15: NPS (Net Promoter Score)\n\n**Definition**: A benchmark for customer loyalty based on the likelihood of customers to recommend the product. Scores range from -100 to +100.\n\n**Strategic Implication**: NPS segments customers into Promoters (9-10), Passives (7-8), and Detractors (0-6). A high score (>50) correlates with strong organic growth via word-of-mouth. It serves as a leading indicator of customer satisfaction and potential churn.\n\n---\n\n## Concept #16: DAU / MAU (Engagement Ratio)\n\n**Definition**: The ratio of Daily Active Users to Monthly Active Users. This metric assesses the \"stickiness\" or frequency of product usage.\n\n**Strategic Implication**: A ratio of 50% implies the average user engages with the product 15 days a month—indicating a high-frequency habit. Low ratios suggest the product is a utility used infrequently. Investors seek high engagement as it typically leads to higher retention and monetization potential.\n\n---\n\n## Concept #17: Viral Coefficient (Referral Rate)\n\n**Definition**: The number of new users generated by each existing user.\n\n**Strategic Implication**: A coefficient greater than 1.0 implies exponential organic growth (virality). A coefficient less than 1.0 means growth will eventually plateau without paid acquisition. Even small increases in the viral coefficient can significantly reduce the blended CAC and accelerate growth velocity.\n\n---\n\n## Concept #18: Cohort Analysis (Retention Analysis)\n\n**Definition**: A method of analyzing user behavior by grouping them into cohorts based on their acquisition date, rather than looking at aggregate data.\n\n**Strategic Implication**: Cohort analysis isolates the impact of product changes or marketing channels on retention over time. It reveals whether newer users are retaining better or worse than older users, preventing \"vanity metrics\" (like total user count) from masking underlying churn problems."
+    },
+    {
+      "id": "playbook-fundraising",
+      "title": "Fundraising & Equity: Navigating Capital Raises",
+      "slug": "fundraising-equity",
+      "category": "Fundraising",
+      "readTime": 30,
+      "excerpt": "Comprehensive guide to fundraising stages, instruments, and equity management from angels to Series A.",
+      "tags": ["fundraising", "equity", "investors", "valuation"],
+      "content": "# Fundraising & Equity\n\n## Concept #19: Angel Investor\n\n**Definition**: A high-net-worth individual who provides capital for a business start-up, usually in exchange for convertible debt or ownership equity.\n\n**Strategic Implication**: Angels typically invest at the earliest stages (Pre-Seed/Seed) when risk is highest. Unlike institutional VCs, they often make faster decisions based on the founder's potential. They can provide valuable mentorship and initial validation but generally write smaller checks.\n\n---\n\n## Concept #20: Venture Capitalist (VC)\n\n**Definition**: A professional investor who manages a pooled fund of capital from limited partners to invest in high-growth startups.\n\n**Strategic Implication**: VCs seek \"power law\" returns—companies capable of returning the entire fund (10x-100x returns). Accepting VC money commits the startup to a trajectory of hyper-growth and an eventual exit (IPO or acquisition). It is not suitable for lifestyle businesses.\n\n---\n\n## Concept #21: Limited Partner (LP)\n\n**Definition**: Institutional investors (pension funds, endowments, family offices) who provide the capital that VCs invest.\n\n**Strategic Implication**: Understanding the LP-VC dynamic is crucial. VCs are under pressure to return capital to their LPs within a specific timeframe (usually 10 years). This pressure drives the VC's need for liquidity events (exits) and aggressive growth targets from their portfolio companies.\n\n---\n\n## Concept #22: Seed vs. Series A (Funding Stages)\n\n**Definition**: Seed capital is used to prove product-market fit and develop the initial product. Series A is growth capital used to scale a proven business model.\n\n**Strategic Implication**: The Series A milestone represents a significant jump in expectations. Seed investors bet on the team and vision; Series A investors bet on metrics, revenue traction, and a clear path to scalability.\n\n---\n\n## Concept #23: Term Sheet\n\n**Definition**: A non-binding agreement setting forth the basic terms and conditions under which an investment will be made.\n\n**Strategic Implication**: The term sheet serves as the blueprint for the binding legal documents. Key provisions include valuation, board composition, and liquidation preferences. Once signed, the startup typically enters a \"no-shop\" period, preventing them from negotiating with other investors during due diligence.\n\n---\n\n## Concept #24: Convertible Note\n\n**Definition**: Short-term debt that converts into equity, typically in conjunction with a future financing round.\n\n**Strategic Implication**: Convertible notes allow startups to raise capital without immediately determining a valuation, which can be difficult in the early stages. The debt converts at a discount or a valuation cap during the next priced round, rewarding early investors for their risk.\n\n---\n\n## Concept #25: SAFE (Simple Agreement for Future Equity)\n\n**Definition**: A standard financing instrument created by Y Combinator that gives investors the right to purchase stock in a future equity round.\n\n**Strategic Implication**: Unlike convertible notes, SAFEs are not debt instruments (no interest or maturity date). They streamline the legal process and reduce costs for early-stage fundraising. The key terms to negotiate are the Valuation Cap and the Discount Rate.\n\n---\n\n## Concept #26: Cap Table (Capitalization Table)\n\n**Definition**: A ledger detailing the ownership percentages, equity dilution, and value of equity in each round of investment.\n\n**Strategic Implication**: Maintaining a clean cap table is essential for future fundraising and exits. \"Broken\" cap tables—cluttered with numerous small investors or non-standard terms—can deter institutional investors. Professional management software is recommended to track option pools and fully diluted ownership.\n\n---\n\n## Concept #27: Dilution\n\n**Definition**: The decrease in existing shareholders' ownership percentage of a company as a result of issuing new shares.\n\n**Strategic Implication**: Dilution is a natural consequence of raising capital. The strategic goal is to ensure that the value of the remaining stake increases faster than the percentage decreases. Founders should focus on the value of their holding rather than the raw percentage, provided they maintain sufficient control.\n\n---\n\n## Concept #28: Option Pool\n\n**Definition**: A block of shares reserved for future employees, typically granted as stock options.\n\n**Strategic Implication**: Investors usually require the creation of an option pool (typically 10-15%) prior to their investment (\"pre-money\"). This effectively dilutes the founders rather than the incoming investors. Sizing this pool correctly based on the hiring plan is a key negotiation point.\n\n---\n\n## Concept #29: Vesting Schedule\n\n**Definition**: The process by which an employee or founder earns the right to their shares over time. The standard is a 4-year schedule with a 1-year cliff.\n\n**Strategic Implication**: The \"Cliff\" ensures that if a stakeholder leaves within the first year, they forfeit their equity. This protects the company from \"dead equity\" on the cap table held by individuals who are no longer contributing. It aligns incentives for long-term commitment.\n\n---\n\n## Concept #30: Liquidation Preference\n\n**Definition**: A clause determining the payout order in a liquidity event (sale or IPO). Preferred shareholders (investors) usually get paid before common shareholders (founders/employees).\n\n**Strategic Implication**: A \"1x Non-Participating\" preference is standard, guaranteeing investors their money back. \"Participating Preferred\" is more aggressive, allowing investors to double-dip (get money back + share in remaining proceeds). Founders should avoid participating preferences to protect their upside.\n\n---\n\n## Concept #31: Down Round\n\n**Definition**: A financing round in which the company sells shares at a lower price per share than the previous round.\n\n**Strategic Implication**: A down round indicates the company has failed to meet growth expectations. It triggers anti-dilution provisions that can severely dilute founders and demoralize employees holding underwater options. Avoiding a down round is a primary motivator for disciplined capital management.\n\n---\n\n## Concept #32: Bridge Round\n\n**Definition**: An interim financing round intended to extend the company's runway until the next major funding milestone (e.g., reaching profitability or Series A).\n\n**Strategic Implication**: While a bridge round provides a lifeline, it can signal distress to the market. It is most effective when used to close a small gap to a clear, achievable milestone that will unlock a full valuation step-up."
+    },
+    {
+      "id": "playbook-legal",
+      "title": "Legal & Governance: Protecting Your Startup",
+      "slug": "legal-governance",
+      "category": "Legal",
+      "readTime": 20,
+      "excerpt": "Essential legal concepts and governance structures every founder must implement to build a defensible company.",
+      "tags": ["legal", "governance", "compliance", "ip"],
+      "content": "# Legal & Governance\n\n## Concept #33: IP Assignment Agreement\n\n**Definition**: A legal contract ensuring that all intellectual property created by founders, employees, and contractors belongs to the company, not the individual.\n\n**Strategic Implication**: Missing IP assignments create a \"chain of title\" defect. This is a red flag during due diligence for financing or acquisition, as it suggests the company may not own its core assets. It must be signed by every contributor from Day 1.\n\n---\n\n## Concept #34: 409A Valuation\n\n**Definition**: An independent appraisal of the fair market value (FMV) of a private company's common stock, required by the IRS.\n\n**Strategic Implication**: A valid 409A is necessary to issue stock options to employees tax-free. Issuing options below FMV without a 409A can result in significant tax penalties for employees. It should be updated annually or after material events (like a funding round).\n\n---\n\n## Concept #35: Board of Directors\n\n**Definition**: The governing body responsible for corporate oversight and protecting shareholder interests. It has the authority to hire/fire the CEO and approve major strategic decisions.\n\n**Strategic Implication**: Effective board management is a key CEO skill. A balanced board (typically Founders, Investors, and Independents) provides governance and strategic guidance. Founders should strive to maintain board control for as long as possible to direct the company's vision.\n\n---\n\n## Concept #36: Advisory Board\n\n**Definition**: An informal group of industry experts who provide strategic advice but lack the legal authority or fiduciary duties of the Board of Directors.\n\n**Strategic Implication**: Advisors are typically compensated with small equity grants (0.1%-0.5%). To ensure value alignment, companies should use a FAST (Founder / Advisor Standard Template) agreement with vesting provisions, allowing the relationship to be terminated if the advisor does not contribute.\n\n---\n\n## Concept #37: Non-Disclosure Agreement (NDA)\n\n**Definition**: A legal contract outlining confidential material that the parties wish to share with one another for certain purposes, but wish to restrict from generalized use.\n\n**Strategic Implication**: Institutional investors (VCs) generally refuse to sign NDAs due to deal flow volume. Insisting on an NDA can signal inexperience. NDAs are appropriate for potential partners, employees, and contractors, but not for initial investor pitches. Execution, not the idea, is the defensible asset.\n\n---\n\n## Concept #38: Drag-Along Rights\n\n**Definition**: A provision enabling a majority shareholder to force a minority shareholder to join in the sale of a company.\n\n**Strategic Implication**: This ensures that a small group of minority shareholders cannot block a merger or acquisition approved by the majority and the Board. It provides deal certainty to potential acquirers, who typically want to acquire 100% of the company.\n\n---\n\n## Concept #39: Tag-Along Rights (Co-Sale Rights)\n\n**Definition**: A contractual obligation used to protect a minority shareholder (usually investors). If a majority shareholder sells their stake, the minority shareholder has the right to join the transaction and sell their minority stake on the same terms.\n\n**Strategic Implication**: This prevents founders from exiting the company and leaving early investors holding illiquid stock in a company without its leadership team. It ensures equitable liquidity opportunities.\n\n---\n\n## Concept #40: Due Diligence\n\n**Definition**: The comprehensive appraisal of a business undertaken by a prospective buyer or investor to establish its assets and liabilities and evaluate its commercial potential.\n\n**Strategic Implication**: Post-Term Sheet, investors verify financial statements, legal contracts, customer references, and technical architecture. Founders must maintain an organized \"Data Room\" to facilitate this process. Discrepancies found during diligence can lead to deal renegotiation or termination."
+    },
+    {
+      "id": "playbook-strategic",
+      "title": "Strategic Concepts: Building Defensible Businesses",
+      "slug": "strategic-concepts",
+      "category": "Strategy",
+      "readTime": 25,
+      "excerpt": "Master the 10 strategic concepts that separate successful startups from those that fail to scale sustainably.",
+      "tags": ["strategy", "product-market-fit", "moat", "growth"],
+      "content": "# Strategic Concepts\n\n## Concept #41: Product-Market Fit (PMF)\n\n**Definition**: The stage where a startup has identified a target customer base and established a product that satisfies their needs.\n\n**Strategic Implication**: Achieving PMF is the primary objective of the Seed stage. Pre-PMF, the focus is on experimentation and learning. Post-PMF, the focus shifts to scaling. Scaling before PMF (\"premature scaling\") is a leading cause of startup failure. Indications of PMF include high retention, organic growth, and inability to keep up with demand.\n\n---\n\n## Concept #42: Minimum Viable Product (MVP)\n\n**Definition**: A development technique in which a new product is introduced in the market with basic features, but enough to get the attention of the consumers.\n\n**Strategic Implication**: The MVP is a tool for validated learning, designed to test fundamental business hypotheses with minimal resources. It is not a \"beta\" but a process of iterative development. The goal is to minimize waste by validating demand before heavy engineering investment.\n\n---\n\n## Concept #43: Pivot\n\n**Definition**: A structured course correction designed to test a new fundamental hypothesis about the product, strategy, and engine of growth.\n\n**Strategic Implication**: A pivot is a strategic shift, not a vision change. It utilizes insights gained from failure to realign the business model. Successful companies (e.g., Slack, YouTube) often result from significant pivots. The ability to pivot quickly preserves capital and time.\n\n---\n\n## Concept #44: Total Addressable Market (TAM)\n\n**Definition**: The overall revenue opportunity available to a product or service if 100% market share was achieved.\n\n**Strategic Implication**: Investors require a large TAM to justify the venture capital risk/return profile. A bottom-up analysis (Number of customers * Price) is preferred over top-down estimates. Founders must articulate a credible path from their initial niche (SOM) to the broader market (TAM).\n\n---\n\n## Concept #45: Economic Moat (Competitive Advantage)\n\n**Definition**: A distinct advantage that a company has over its competitors which allows it to protect its market share and profitability.\n\n**Strategic Implication**: Sustainable value creation requires a defensible moat. Common moats include Network Effects, High Switching Costs, Brand Equity, and Intellectual Property. Without a moat, competition will eventually erode margins to the cost of capital.\n\n---\n\n## Concept #46: Network Effects\n\n**Definition**: A phenomenon where a product or service gains additional value as more people use it.\n\n**Strategic Implication**: Network effects are the most potent form of defensibility in the digital economy. They lead to winner-take-all dynamics (e.g., social networks, marketplaces). Startups should design their products to inherently capture value from user growth to build this barrier to entry.\n\n---\n\n## Concept #47: Product-Led Growth (PLG)\n\n**Definition**: A go-to-market strategy that relies on using the product as the main vehicle to acquire, activate, and retain customers.\n\n**Strategic Implication**: PLG reduces dependency on expensive sales teams by allowing users to self-serve (freemium or free trial). It lowers CAC and widens the top of the funnel. Enterprise adoption often follows a \"land and expand\" model, where individual usage drives organizational purchasing.\n\n---\n\n## Concept #48: Ideal Customer Profile (ICP)\n\n**Definition**: A description of the fictional company or customer that gets significant value from the product and provides significant value to the company.\n\n**Strategic Implication**: Focusing on the ICP improves sales efficiency and marketing ROI. Startups must resist the urge to sell to \"everyone.\" Narrowing the focus allows for tailored messaging and product development that resonates deeply with the highest-value segment.\n\n---\n\n## Concept #49: Exit Strategy\n\n**Definition**: The method by which a venture capitalist or business owner intends to get out of an investment that he or she has made in the past.\n\n**Strategic Implication**: Investors fund startups to realize a return, typically via M&A (Mergers & Acquisitions) or IPO (Initial Public Offering). Founders should understand the exit landscape of their industry to align their strategic decisions with potential liquidity events.\n\n---\n\n## Concept #50: Acqui-hire\n\n**Definition**: An acquisition where the primary motivation is to hire the target company's talented employees rather than to acquire its products or services.\n\n**Strategic Implication**: Often represents a \"soft landing\" for startups that failed to achieve significant traction but built a strong technical team. The purchase price typically covers the return of investor capital, with retention packages offered to the engineering talent."
+    },
+    {
+      "id": "playbook-narrative-1",
+      "title": "Play 1: Ideation & Validation (Weeks 1-2)",
+      "slug": "ideation-validation",
+      "category": "Execution",
+      "readTime": 15,
+      "excerpt": "Learn how to validate your problem statement and mitigate market risk before building anything.",
+      "tags": ["validation", "customer-discovery", "mvp", "lean-startup"],
+      "content": "# The Narrative Playbook: The Archetypal Founder\n\n## Play 1: Ideation & Validation (Weeks 1-2)\n\n**Objective**: Validate the problem statement to mitigate market risk.\n\n### 1. The \"Hair on Fire\" Problem\n\nMany founders commit the error of starting with a solution and searching for a problem. This approach increases the risk of building a product no one needs.\n\n**Strategic Concept**: Customers with a \"hair on fire\" problem are indifferent to the elegance of the solution; they prioritize immediate resolution.\n\n**Validation Metric**: Look for compensatory behaviors. Are potential customers currently utilizing inefficient workarounds (e.g., complex spreadsheets, manual labor) to solve the problem? This indicates active demand and willingness to pay.\n\n---\n\n### 2. Customer Discovery (The Truth Serum)\n\n**Rule**: Validation cannot occur in isolation. Direct market engagement is required.\n\n#### The \"Mom Test\" Methodology:\n\n**Ineffective Inquiry**: \"Would you use this product?\" (Solicits polite, hypothetical, and often false validation).\n\n**Effective Inquiry**: \"Describe the last time this problem occurred. What were the economic or operational consequences?\" (Solicits factual data on pain points and budget).\n\n---\n\n### 3. The \"Fake Door\" Test\n\n**The Tactic**: Deploy a landing page articulating the value proposition prior to product development.\n\n**The Metric**: Measure conversion rates on the Call to Action (CTA). Lack of engagement indicates a lack of market pull, necessitating a strategic pivot before engineering resources are deployed.\n\n---\n\n## Key Takeaways\n\n- Start with the problem, not the solution\n- Validate demand through customer conversations\n- Look for compensatory behaviors indicating real pain\n- Test interest before building anything\n- Be prepared to pivot based on feedback"
+    },
+    {
+      "id": "playbook-narrative-2",
+      "title": "Play 2: Building the MVP (Weeks 3-6)",
+      "slug": "building-mvp",
+      "category": "Execution",
+      "readTime": 12,
+      "excerpt": "Develop a Minimum Viable Product that delivers core value while maintaining speed and learning velocity.",
+      "tags": ["mvp", "product", "execution", "iteration"],
+      "content": "# Play 2: Building the MVP (Weeks 3-6)\n\n**Objective**: Develop a Minimum Viable Product to initiate the feedback loop.\n\n## 1. Define the MVP\n\nThe MVP is not a prototype; it is the simplest iteration of the product capable of delivering core value.\n\n**Constraint**: Development cycles exceeding 4 weeks suggest scope creep.\n\n**Strategy**: The Founder utilized a Concierge MVP approach. Rather than automating complex backend logic, the service was fulfilled manually. This allowed for high-touch customer interaction and rapid iteration of the process flow before coding.\n\n---\n\n## 2. Do Things That Don't Scale\n\n**Manual > Automated**: Embrace manual fulfillment to understand the nuances of the user experience.\n\n**Why**: You cannot effectively automate a process you do not fully understand. Manual execution reveals edge cases and operational bottlenecks that inform the technical architecture.\n\n### Examples of \"Do Things That Don't Scale\":\n\n- **Manual onboarding**: Personally walk users through setup\n- **Concierge service**: Fulfill requests manually before building automation\n- **White-glove support**: Over-invest in early customer success\n- **Direct outreach**: Personally recruit your first 100 users\n\n---\n\n## Key Principles\n\n1. **Speed over perfection**: Ship in weeks, not months\n2. **Manual execution first**: Understand the process before automating\n3. **Focus on core value**: What's the one thing that must work?\n4. **Embrace constraints**: Limited time forces prioritization\n5. **High-touch early users**: Over-invest in understanding their experience\n\n---\n\n## Common MVP Mistakes\n\n- Building too many features\n- Focusing on polish over functionality\n- Automating before understanding the workflow\n- Avoiding customer contact\n- Spending more than 4-6 weeks in development"
+    },
+    {
+      "id": "playbook-narrative-3",
+      "title": "Play 3: Launch & Iterate (Week 7+)",
+      "slug": "launch-iterate",
+      "category": "Execution",
+      "readTime": 18,
+      "excerpt": "Establish a continuous Build-Measure-Learn feedback loop to accelerate toward product-market fit.",
+      "tags": ["launch", "metrics", "iteration", "growth"],
+      "content": "# Play 3: Launch & Iterate (Week 7+)\n\n**Objective**: Establish a continuous Build-Measure-Learn feedback loop.\n\n## 1. The Soft Launch\n\n**Strategy**: Release the product to the initial cohort of interviewed users.\n\n**White Glove Onboarding**: Personally onboard early users to observe friction points. Immediate remediation of UX issues builds trust and accelerates learning.\n\n---\n\n## 2. Metrics That Matter (AARRR Framework)\n\n| Metric | Business Definition |\n|--------|--------------------|\n| **Acquisition** | Channels and costs associated with user discovery. |\n| **Activation** | The rate at which users experience the core value proposition. |\n| **Retention** | The percentage of returning users. (The primary indicator of PMF). |\n| **Revenue** | The conversion rate of free/trial users to paid customers. |\n| **Referral** | The viral coefficient and organic growth rate. |\n\n### Focus Priority:\n\n1. **Retention** - The most important metric for PMF\n2. **Activation** - Getting users to \"aha\" moment\n3. **Acquisition** - Bringing users in the door\n4. **Revenue** - Converting activated users to paying customers\n5. **Referral** - Amplifying growth through existing users\n\n---\n\n## 3. The Feedback Loop\n\n**Build → Measure → Learn**\n\n**Velocity**: In early stages, speed of iteration is a primary competitive advantage. The goal is to minimize the time between hypothesis generation and market validation.\n\n### Iteration Cycle:\n\n1. **Build**: Ship the smallest testable change\n2. **Measure**: Track key metrics and user behavior\n3. **Learn**: Analyze results and form new hypotheses\n4. **Repeat**: Start the cycle again\n\n**Target**: Weekly or bi-weekly iteration cycles\n\n---\n\n## Strategic Mindset Shifts\n\n### \"Strong Opinions, Loosely Held\"\n\nMaintain conviction in the vision but remain flexible on the execution. Pivot immediately when empirical data contradicts the hypothesis.\n\n### \"Painkiller vs. Vitamin\"\n\nVitamins represent discretionary spending (\"nice to have\"). Painkillers represent essential spending (\"need to have\"). Successful startups solve acute pain points.\n\n### \"Default Alive vs. Default Dead\"\n\nMonitor runway rigorously. If the company is \"Default Dead\" (on a trajectory to run out of cash), all strategic focus must shift to reaching profitability or securing additional capital.\n\n---\n\n## Success Indicators\n\n- Users return without prompting (retention)\n- Organic growth through word-of-mouth\n- Users would be \"very disappointed\" if product went away\n- Consistent usage patterns emerge\n- Customer feedback becomes more refinement than feature requests"
+    }
+  ],
+  "blueprintRules": [
+    {
+      "condition": {
+        "stage": ["idea", "concept"],
+        "goals": ["build_mvp"]
+      },
+      "tasks": ["task-1", "task-2", "task-3", "task-7", "task-8", "task-9", "task-11", "task-14", "task-15"]
+    },
+    {
+      "condition": {
+        "stage": ["idea", "concept"],
+        "goals": ["raise_funding"]
+      },
+      "tasks": ["task-1", "task-4", "task-5", "task-6", "task-12", "task-13"]
+    },
+    {
+      "condition": {
+        "stage": ["idea", "concept"],
+        "goals": ["get_first_customers"]
+      },
+      "tasks": ["task-1", "task-2", "task-3", "task-10", "task-11", "task-15"]
+    },
+    {
+      "condition": {
+        "industry": ["SaaS"],
+        "fundingGoal": ["seed", "series-a"]
+      },
+      "tasks": ["task-4", "task-5", "task-6", "task-12", "task-13"]
+    }
+  ]
+}
