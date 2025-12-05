@@ -27,4 +27,4 @@ export async function getCurrentUser(request: NextRequest) {
   const session = await auth.api.getSession({ headers: await headers() });
   return session?.user || null;
 }
-export const runtime = "nodejs"; 
+export const runtime = "nodejs";
