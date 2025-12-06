@@ -8,24 +8,12 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
-import { authClient, useSession } from "../../lib/auth-client";
+import { useAuth } from "../../lib/auth-client";
 import { toast } from "sonner";
-
-type ErrorTypes = Partial<Record<keyof typeof authClient.$ERROR_CODES, string>>;
-const errorCodes = {
-  USER_ALREADY_EXISTS: "An account with this email already exists",
-} satisfies ErrorTypes;
-
-const getErrorMessage = (code: string) => {
-  if (code in errorCodes) {
-    return errorCodes[code as keyof typeof errorCodes];
-  }
-  return "Registration failed. Please try again.";
-};
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { session, isLoading: authLoading, register, loginWithGoogle } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -39,14 +27,14 @@ export default function RegisterPage() {
 
   // Redirect if already logged in
   useEffect(() => {
-    if (!isPending && session?.user) {
+    if (!authLoading && session?.user) {
       checkOnboardingStatus();
     }
-  }, [session, isPending, router]);
+  }, [session, authLoading, router]);
 
   const checkOnboardingStatus = async () => {
     try {
-      const token = localStorage.getItem("bearer_token");
+      const token = localStorage.getItem("auth-token") || session?.token;
       const response = await fetch("/api/startups", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -89,22 +77,12 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const { error } = await authClient.signUp.email({
-        email: formData.email,
-        name: formData.name,
-        password: formData.password,
-      });
-
-      if (error?.code) {
-        toast.error(getErrorMessage(error.code));
-        setIsLoading(false);
-        return;
-      }
-
+      await register(formData.name, formData.email, formData.password);
       toast.success("Account created successfully!");
       router.push("/login?registered=true");
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch (error: any) {
+      toast.error(error.message || "Something went wrong. Please try again.");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -113,34 +91,24 @@ export default function RegisterPage() {
     setIsGoogleLoading(true);
 
     try {
-      const { error } = await authClient.signIn.social({
-        provider: "google",
-      });
-
-      if (error?.code) {
-        toast.error("Google sign-in failed. Please try again.");
-        setIsGoogleLoading(false);
-        return;
-      }
-
-      // After successful Google sign-in, check onboarding status
-      await checkOnboardingStatus();
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+      await loginWithGoogle();
+      // The redirect will happen automatically
+    } catch (error: any) {
+      toast.error(error.message || "Google sign-in failed. Please try again.");
       setIsGoogleLoading(false);
     }
   };
 
-  if (isPending) {
+  if (authLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-teal-50 via-white to-blue-50">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-teal-50 via-white to-blue-50">
         <Loader2 className="h-8 w-8 animate-spin text-teal-600" />
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-teal-50 via-white to-blue-50 px-4 py-8">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-teal-50 via-white to-blue-50 px-4 py-8">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-teal-100">

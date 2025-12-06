@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../lib/prisma';
-import { auth } from '../../../lib/auth';
+import { requireAuth } from '../../../lib/auth-server';
 
 import { generateBlueprint, BlueprintContent } from '../../../lib/blueprint-generator';
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Authentication required', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const body = await request.json();
     const { startupId } = body;
@@ -47,7 +42,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (startup.userId !== session.user.id) {
+    if (startup.userId !== userId) {
       return NextResponse.json(
         { error: 'You do not have permission to access this startup', code: 'FORBIDDEN' },
         { status: 403 }

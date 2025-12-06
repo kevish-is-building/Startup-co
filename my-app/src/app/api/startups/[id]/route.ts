@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma';
-import { auth } from '../../../../lib/auth';
+import { requireAuth } from '../../../../lib/auth-server';
 
 const VALID_INDUSTRIES = ['food', 'saas', 'consumer', 'healthcare', 'fintech', 'edtech'];
 const VALID_STAGES = ['ideation', 'mvp', 'growth'];
@@ -12,13 +12,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Authentication required', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const { id } = await params;
     if (!id || isNaN(parseInt(id))) {
@@ -45,7 +40,7 @@ export async function GET(
       );
     }
 
-    if (startup.userId !== session.user.id) {
+    if (startup.userId !== userId) {
       return NextResponse.json(
         { error: 'You do not have permission to access this startup', code: 'FORBIDDEN' },
         { status: 403 }
@@ -77,13 +72,8 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Authentication required', code: 'UNAUTHORIZED' },
-        { status: 401 }
-      );
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const { id } = await params;
     if (!id || isNaN(parseInt(id))) {
@@ -106,7 +96,7 @@ export async function PUT(
       );
     }
 
-    if (existingStartup.userId !== session.user.id) {
+    if (existingStartup.userId !== userId) {
       return NextResponse.json(
         { error: 'You do not have permission to update this startup', code: 'FORBIDDEN' },
         { status: 403 }

@@ -1,8 +1,2 @@
-import { auth } from "../../../../lib/auth";
-
-import { toNextJsHandler } from "better-auth/next-js";
-export const runtime = "nodejs";
-export const GET = auth.handler;
-export const POST = auth.handler;
-
-// export const { POST, GET } = toNextJsHandler(auth);
+// This file is no longer needed as we're using custom auth controllers
+// All auth routes are now handled by individual API endpoints

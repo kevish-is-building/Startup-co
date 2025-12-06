@@ -9,14 +9,14 @@ import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
 import { Checkbox } from "../../components/ui/checkbox";
-import { authClient, useSession } from "../../lib/auth-client";
+import { useAuth } from "../../lib/auth-client";
 import { toast } from "sonner";
 import { useEffect } from "react";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { data: session, isPending } = useSession();
+  const { session, isLoading: authLoading, login, loginWithGoogle } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -28,10 +28,10 @@ function LoginForm() {
 
   // Redirect if already logged in
   useEffect(() => {
-    if (!isPending && session?.user) {
+    if (!authLoading && session?.user) {
       checkOnboardingStatus();
     }
-  }, [session, isPending, router]);
+  }, [session, authLoading, router]);
 
   // Show success message if just registered
   useEffect(() => {
@@ -42,7 +42,7 @@ function LoginForm() {
 
   const checkOnboardingStatus = async () => {
     try {
-      const token = localStorage.getItem("bearer_token");
+      const token = localStorage.getItem("auth-token") || session?.token;
       const response = await fetch("/api/startups", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -74,22 +74,12 @@ function LoginForm() {
     setIsLoading(true);
 
     try {
-      const { error } = await authClient.signIn.email({
-        email: formData.email,
-        password: formData.password,
-        rememberMe: formData.rememberMe,
-      });
-
-      if (error?.code) {
-        toast.error("Invalid email or password. Please make sure you have already registered an account and try again.");
-        setIsLoading(false);
-        return;
-      }
-
+      await login(formData.email, formData.password, formData.rememberMe);
       toast.success("Welcome back!");
       await checkOnboardingStatus();
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch (error: any) {
+      toast.error(error.message || "Invalid email or password. Please make sure you have already registered an account and try again.");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -98,25 +88,15 @@ function LoginForm() {
     setIsGoogleLoading(true);
     
     try {
-      const { error } = await authClient.signIn.social({
-        provider: "google",
-      });
-
-      if (error?.code) {
-        toast.error("Google sign-in failed. Please try again.");
-        setIsGoogleLoading(false);
-        return;
-      }
-
-      // After successful Google sign-in, check onboarding status
-      await checkOnboardingStatus();
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+      await loginWithGoogle();
+      // The redirect will happen automatically
+    } catch (error: any) {
+      toast.error(error.message || "Google sign-in failed. Please try again.");
       setIsGoogleLoading(false);
     }
   };
 
-  if (isPending) {
+  if (authLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-teal-50 via-white to-blue-50">
         <Loader2 className="h-8 w-8 animate-spin text-teal-600" />

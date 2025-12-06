@@ -1,19 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma';
-import { auth } from '../../../../lib/auth';
+import { requireAuth } from '../../../../lib/auth-server';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ startupId: string }> }
 ) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Authentication required', code: 'AUTHENTICATION_REQUIRED' },
-        { status: 401 }
-      );
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const { startupId } = await params;
 
@@ -37,7 +32,7 @@ export async function GET(
       );
     }
 
-    if (startup.userId !== session.user.id) {
+    if (startup.userId !== userId) {
       return NextResponse.json(
         { error: 'Forbidden: You do not own this startup', code: 'FORBIDDEN' },
         { status: 403 }
@@ -70,13 +65,8 @@ export async function PUT(
   { params }: { params: Promise<{ startupId: string }> }
 ) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Authentication required', code: 'AUTHENTICATION_REQUIRED' },
-        { status: 401 }
-      );
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const { startupId } = await params;
 
@@ -100,7 +90,7 @@ export async function PUT(
       );
     }
 
-    if (startup.userId !== session.user.id) {
+    if (startup.userId !== userId) {
       return NextResponse.json(
         { error: 'Forbidden: You do not own this startup', code: 'FORBIDDEN' },
         { status: 403 }

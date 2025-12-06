@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../lib/prisma';
-import { auth } from '../../../lib/auth';
+import { requireAuth } from '../../../lib/auth-server';
 import { generateBlueprint } from '../../../lib/blueprint-generator';
 
 const VALID_INDUSTRIES = ['food', 'saas', 'consumer', 'healthcare', 'fintech', 'edtech'];
@@ -10,10 +10,8 @@ const VALID_SKILLS = ['product', 'operations', 'marketing', 'sales', 'engineerin
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const body = await request.json();
     const {
@@ -133,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     const newStartup = await prisma.startup.create({
       data: {
-        userId: session.user.id,
+        userId: userId,
         fullName: fullName.trim(),
         startupName: startupName.trim(),
         industry,
@@ -210,17 +208,15 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth.api.getSession({ headers: request.headers });
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
-    }
+    const session = await requireAuth(request);
+    const userId = session.user.id;
 
     const searchParams = request.nextUrl.searchParams;
     const limit = Math.min(parseInt(searchParams.get('limit') ?? '10'), 100);
     const offset = parseInt(searchParams.get('offset') ?? '0');
     const search = searchParams.get('search');
 
-    const where: any = { userId: session.user.id };
+    const where: any = { userId: userId };
     
     if (search) {
       where.OR = [
