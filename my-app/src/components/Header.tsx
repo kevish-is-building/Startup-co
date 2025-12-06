@@ -34,26 +34,13 @@ export default function Header() {
 
   const handleSignOut = async () => {
     setIsSigningOut(true);
-    const token = localStorage.getItem("bearer_token");
 
     try {
-      const { error } = await authClient.signOut({
-        fetchOptions: {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      });
-
-      if (error?.code) {
-        toast.error("Failed to sign out");
-        setIsSigningOut(false);
-      } else {
-        localStorage.removeItem("bearer_token");
-        refetch();
-        toast.success("Signed out successfully");
-        router.push("/");
-      }
+      await authClient.signOut();
+      localStorage.removeItem("bearer_token");
+      refetch();
+      toast.success("Signed out successfully");
+      router.push("/");
     } catch (error) {
       toast.error("Something went wrong");
       setIsSigningOut(false);
