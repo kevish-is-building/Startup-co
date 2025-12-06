@@ -37,6 +37,9 @@ export async function getSessionFromRequest(request: NextRequest): Promise<AuthS
   const token = request.cookies.get('auth-token')?.value || 
                 request.headers.get('authorization')?.replace('Bearer ', '');
 
+  console.log("=====token", token)
+  console.log("=====cookies", request.cookies)
+
   if (!token) {
     return null;
   }
