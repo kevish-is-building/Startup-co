@@ -23,7 +23,6 @@ export async function middleware(request: NextRequest) {
   try {
     const session = await getSessionFromRequest(request);
     const isAuthenticated = !!session;
-    
     // Check if the path requires authentication
     const isProtectedPath = protectedPaths.some(path => 
       pathname.startsWith(path)
@@ -34,6 +33,7 @@ export async function middleware(request: NextRequest) {
       pathname.startsWith(path)
     );
     
+    console.log("------>>>>>>", isAuthenticated, isAuthPath)
     // Redirect to login if accessing protected route without authentication
     if (isProtectedPath && !isAuthenticated) {
       return NextResponse.redirect(new URL('/login', request.url));
