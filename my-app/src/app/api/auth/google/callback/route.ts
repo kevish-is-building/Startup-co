@@ -132,8 +132,8 @@ export async function GET(request: NextRequest) {
       }
     });
 
-    // Redirect to appropriate page with token in cookie
-    const response = NextResponse.redirect(`${request.nextUrl.origin}/dashboard`);
+    // Redirect to auth callback page with token in cookie
+    const response = NextResponse.redirect(`${request.nextUrl.origin}/auth/callback`);
     
     response.cookies.set('auth-token', token, {
       httpOnly: true,

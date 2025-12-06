@@ -5,8 +5,10 @@ import { prisma } from '../../../../lib/prisma';
 export async function GET(request: NextRequest) {
   try {
     // Get token from cookies or Authorization header
-    const token = request.cookies.get('auth-token')?.value || 
-                  request.headers.get('authorization')?.replace('Bearer ', '');
+    const cookieToken = request.cookies.get('auth-token')?.value;
+    const authHeader = request.headers.get('authorization');
+    const headerToken = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    const token = cookieToken || headerToken;
 
     if (!token) {
       return NextResponse.json({ user: null });
@@ -42,18 +44,29 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ user: null });
       }
 
-      return NextResponse.json({ 
+      const response = NextResponse.json({ 
         user: session.user,
         session: {
           token: session.token,
           expiresAt: session.expiresAt
         }
       });
+
+      // Re-set the cookie to keep it fresh (sliding window)
+      response.cookies.set('auth-token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 // 7 days
+      });
+
+      return response;
     } catch (jwtError) {
+      console.error('[Session] JWT verification failed:', jwtError instanceof Error ? jwtError.message : String(jwtError));
       return NextResponse.json({ user: null });
     }
   } catch (error) {
-    console.error('Session check error:', error);
+    console.error('[Session] Session check error:', error instanceof Error ? error.message : String(error));
     return NextResponse.json({ user: null });
   }
 }

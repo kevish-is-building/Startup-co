@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!user || !user.password) {
+      console.warn(`[Login] Login attempt for non-existent or passwordless user: ${email}`);
       return NextResponse.json(
         { error: 'Invalid email or password' },
         { status: 401 }
@@ -31,6 +32,7 @@ export async function POST(request: NextRequest) {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     
     if (!isPasswordValid) {
+      console.warn(`[Login] Invalid password for user: ${email}`);
       return NextResponse.json(
         { error: 'Invalid email or password' },
         { status: 401 }
@@ -53,6 +55,8 @@ export async function POST(request: NextRequest) {
       }
     });
 
+    console.log(`[Login] Successful login for user: ${email}`);
+
     const response = NextResponse.json({
       user: {
         id: user.id,
@@ -74,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     return response;
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('[Login] Login error:', error instanceof Error ? error.message : String(error));
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

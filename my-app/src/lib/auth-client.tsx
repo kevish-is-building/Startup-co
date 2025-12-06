@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState, createContext, useContext, ReactNode } from "react"
 import { toast } from "sonner"
+import setupAuthFetch from "./setup-auth-fetch"
 
 export interface AuthUser {
   id: string;
@@ -37,8 +38,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const fetchSession = async () => {
     try {
       setError(null);
+      const token = typeof window !== 'undefined' ? localStorage.getItem('auth-token') : null;
+      
       const response = await fetch('/api/auth/session', {
-        credentials: 'include'
+        credentials: 'include',
+        headers: token ? {
+          'Authorization': `Bearer ${token}`
+        } : {}
       });
       
       if (response.ok) {
@@ -144,6 +150,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
+    // Setup fetch interceptor for auth tokens
+    if (typeof window !== 'undefined') {
+      setupAuthFetch();
+    }
     fetchSession();
   }, []);
 

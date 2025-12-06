@@ -42,12 +42,8 @@ function LoginForm() {
 
   const checkOnboardingStatus = async () => {
     try {
-      const token = localStorage.getItem("auth-token") || session?.token;
-      const response = await fetch("/api/startups", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // The fetch interceptor will automatically add the token
+      const response = await fetch("/api/startups");
 
       if (response.ok) {
         const startups = await response.json();
